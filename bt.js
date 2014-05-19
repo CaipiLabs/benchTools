@@ -40,7 +40,7 @@ var benchTools = {
                     moys.Amem.push([used, cleaned]);
                 }
                 //<debug>
-                console.info("Samples "+(++z)+" : " + tm + 'ms, mem delta : '+(used-cleaned)'Mo; '+cleaned+'Mo taken by garbage collect');//( '+tmp.getFullAddress()+' )
+                console.info("Samples "+(++z)+" : " + tm + 'ms, mem delta : '+(used-cleaned)+'Mo; '+cleaned+'Mo taken by garbage collect');//( '+tmp.getFullAddress()+' )
                 //</debug>
             });
         }
@@ -57,7 +57,7 @@ var benchTools = {
                 memGC += v[1];
             });
             //<debug>
-            console.warn("Bench result : " + (mA / moys.A.length) + "ms / " + (memA / moys.A.length) + "Mo in " + moys.A.length + " records\n "+(100*(memA/memGC))+' % garbage collected';
+            console.warn("Bench result : " + (mA / moys.A.length) + "ms / " + (memA / moys.A.length) + "Mo in " + moys.A.length + " records\n "+(100*(memA/memGC))+' % garbage collected');
             //</debug>
 
         },500);
