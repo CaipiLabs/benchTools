@@ -23,7 +23,7 @@ var benchTools = {
         console.warn("Starting "+totalSamples+" sample of "+totalTests+" trys", fn);
         //</debug>
         for ( i = 0 ; i < totalSamples ; i++ ) {
-            gc && gc();
+            
             setTimeout(function () {
                 gc && gc();
                 var keep = [], i, tm = Date.now(), tmp, mem = gc && window.performance.memory.usedJSHeapSize, used, cleaned;
