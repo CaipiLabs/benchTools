@@ -1,39 +1,17 @@
 /**
- * @author Nathanael Debienassis
- *
- * Date: 03/05/14
- * Time: 13:16
- */
-/**
  * @author Nathanaël Debienassis
  */
 
 var benchTools = {
     log : [],
     benchs : {},
-    start : function(id){
-        this.benchs[id] = Date.now();
-//       //<debug>  Ext.Logger.warn(id + ': start @ ' + this.benchs[id] + ' ms '); //</debug>
-    },
-
-    done : function(id){
-        var time = Date.now() - this.benchs[id];
-        delete this.benchs[id];
-        this.log.push(id + ': ' + time + ' ms ');
-        //<debug>
-        console.warn(id + ': done in ' + time + ' ms');
-        //</debug>
-    },
-
-    replay : function(){
-        var o;
-        for (o = 0; o < this.log.length; o++) {
-            //<debug>
-            console.warn(this.log[o]);
-            //</debug>
-        }
-    },
-    goBenchNow : function (fn, totalTests, totalSamples){
+    /**
+     * Start ( totalTests ) independent benchs with ( totalSamples ) iterations of ( fn )
+     * gc() need to be available to get memory benchs ( see readme )
+     * 
+     * results are sent to the console
+     */
+    goBenchThat : function (fn, totalTests, totalSamples){
         var i, z=-1,
             gc = window.gc || 0;
 
