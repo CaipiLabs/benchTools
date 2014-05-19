@@ -7,7 +7,7 @@ var benchTools = {
     benchs : {},
     /**
      * Start ( totalTests ) independent benchs with ( totalSamples ) iterations of ( fn )
-     * gc() need to be available to get memory benchs ( see readme )
+     * gc() need to be available to get memory results ( see readme )
      * 
      * results are sent to the console
      */
