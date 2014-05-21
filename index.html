@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html manifest="" lang="en-US"  style="width:100%;height:100%">
+<head>
+    <meta charset="UTF-8">
+    <title>slideshow3d Demo</title>
+    <!-- The line below must be kept intact for Sencha Command to build your application -->
+    <script type="text/javascript" src="bt.js"></script>
+    <script type="text/javascript" src="objectManagers/A.min.js"></script>
+    <script type="text/javascript" src="objectManagers/sencha-touch.js"></script>
+</head>
+<body style="width:100%;height:100%">
+<script language="javascript">
+    A.define("AlchemyPerson",
+             {
+
+                 constructor : function (name) {
+                     this.name = name;
+                 },
+                 setAddress       : function (country, city, street) {
+                     this.country = country;
+                     this.city = city;
+                     this.street = street;
+                 }
+             });
+    A.define("AlchemyFrenchGuy",
+             {
+                 use         : "AlchemyPerson",
+                 setAddress  : function (city, street) {
+                     this.callParent(["France", city, street]);
+                 }
+             });
+    A.define("AlchemyParisLover",
+             {
+                 use         : "AlchemyFrenchGuy",
+                 constructor : function (name) {
+                     this.callParent(arguments);
+                 },
+                 setAddress       : function (street) {
+                     this.callParent(["Paris", street]);
+                 }
+             });
+    //        console.timeEnd("Define Alchemy 0");
+    //        console.time("Define sencha");
+    Ext.define("SenchaPerson",
+               {
+                   constructor : function (name) {
+                       this.name = name;
+                   },
+                   setAddress       : function (country, city, street) {
+                       this.country = country;
+                       this.city = city;
+                       this.street = street;
+                   }
+               });
+    Ext.define("SenchaFrenchGuy",
+               {
+                   extend         : "SenchaPerson",
+                   setAddress  : function (city, street) {
+                       this.callParent(["France", city, street]);
+                   }
+               });
+    Ext.define("SenchaParisLover",
+               {
+                   extend         : "SenchaFrenchGuy",
+                   constructor : function (name) {
+                       this.callParent(arguments);
+                   },
+                   setAddress       : function (street) {
+                       this.callParent(["Paris", street]);
+                   }
+               });
+    var keep = [], tmp;
+
+    // override console.logs
+    console = {
+        log : function(txt){
+            document.body.innerHTML+=txt.replace(/[\n\r]/, '<br>')+'<br>';
+        },
+        info : function(txt){
+            document.body.innerHTML+='<div>'+txt.replace(/[\n\r]/g, '<br>')+'</div>';
+        },
+        warn : function(txt){
+            document.body.innerHTML+='<h2>'+txt.replace(/[\n\r]/g, '<br>')+'</h2>';
+        }
+    };
+    console.warn("Start Alchemy class bench...");
+    bt.goBenchThat(function(){
+
+                       keep.push(tmp = new AlchemyParisLover('toto'));
+                       tmp.setAddress('inthesky');
+                   }, 100000, 10,
+    function(){
+        console.warn("Start Sencha class bench...");
+        bt.goBenchThat(function(){
+
+            keep.push(tmp = new SenchaParisLover('toto'));
+            tmp.setAddress('inthesky');
+        }, 100000, 10);
+    });
+
+</script>
+</body>
+</html>
