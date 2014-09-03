@@ -1,10 +1,16 @@
 benchTools
 ==========
 
-Small and usefull benching function with memory information<br><br>
+Small and usefull benching function with memory information to bench structures/class on the fly<br><br>
 Rem : the webkit gc() method is requiered to get memory deltas; <br>
 It need be activated from the command line using the following switchs :<br>
+  
+  %chrome path/exec% --enable-precise-memory-info --js-flags="--expose-gc"
+  
+  or for older chrome version : 
+  
   %chrome path/exec% --enable-memory-info --js-flags="--expose-gc"
+  
 
 <br><br><br>
 Sample Example :<br>
