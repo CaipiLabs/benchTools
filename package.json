@@ -1,0 +1,11 @@
+{
+  "name": "v8mem-bench",
+  "license": "MIT",
+  "main": "bt.js",
+  "description": "Small benching function with memory information to bench structures/class on the fly in chrome (based on gc())",
+  "devDependencies": {
+  },
+  "dependencies": {
+    
+  }
+}

@@ -2,6 +2,11 @@
  * @author Nathanaël Debienassis
  */
 
+ if (typeof gc == 'undefined'){
+     console.error("There no garbage collector available !! ( gc() is undefined )");
+ }
+ 
+ 
 var benchTools = {
     log : [],
     benchs : {},
@@ -67,3 +72,5 @@ var benchTools = {
         },500);
     }
 }, bt = benchTools;
+
+module.exports = benchTools;
